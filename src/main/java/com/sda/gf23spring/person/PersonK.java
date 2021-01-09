@@ -2,15 +2,18 @@ package com.sda.gf23spring.person;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
-@Qualifier("krzysztof")
-public class Person implements PersonInt{
-    @Value("${person.id}")
+@Qualifier("adam")
+public class PersonK implements PersonInt{
+    @Value("${person.idK}")
     private int personId;
 
-    @Value("${person.name}")
+    @Value("${person.nameK}")
     private String name;
 
     public int getPersonId() {
