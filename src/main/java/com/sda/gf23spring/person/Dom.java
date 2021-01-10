@@ -12,10 +12,6 @@ public class Dom {
         this.personInt = personInt;
     }
 
-    //    public void setPerson(PersonInt personInt) {
-//        this.personInt = personInt;
-//    }
-
     public void init() {
         logger.info("Metoda init klasy Dom");
     }
@@ -35,8 +31,4 @@ public class Dom {
                 ", person=" + personInt +
                 '}';
     }
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 }

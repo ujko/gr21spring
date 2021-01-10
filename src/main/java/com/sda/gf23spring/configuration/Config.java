@@ -10,28 +10,35 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 public class Config {
 
-//    @Autowired
-//    Person person;
+    @Autowired
+    Person person;
 
-//    @Bean(initMethod = "init", destroyMethod = "end")
-//    public Dom createDom(Logger logger) {
-//        Dom dom = new Dom();
-//        dom.setId(1);
-////        dom.setLogger(logger);
-//        logger.info("createDom");
-//        dom.setPerson(person);
-//        return dom;
-//    }
+    @Bean
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("i18n/messages");
+        source.setDefaultEncoding("UTF-8");
+        return source;
+    }
 
-//    @Bean("logger")
-//    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-//    public Logger getLogger(InjectionPoint injectionPoint) {
-//        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
-//    }
+    @Bean(initMethod = "init", destroyMethod = "end")
+    public Dom createDom(Logger logger) {
+        Dom dom = new Dom(2, person);
+        dom.setLogger(logger);
+        logger.info("createDom");
+        return dom;
+    }
+
+    @Bean("logger")
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    public Logger getLogger(InjectionPoint injectionPoint) {
+        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
+    }
 
 
 }
