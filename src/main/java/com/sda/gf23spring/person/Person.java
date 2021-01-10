@@ -1,18 +1,8 @@
 package com.sda.gf23spring.person;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-@Component
-public class Person implements PersonInt {
-    @Value("${person.id}")
+public class Person {
     private int personId;
-    @Value("${person.name}")
     private String name;
-
-    public Person() {
-        System.out.println("Start klasy Person");
-    }
 
     public int getPersonId() {
         return personId;
