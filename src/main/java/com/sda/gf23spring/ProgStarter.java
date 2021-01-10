@@ -1,5 +1,6 @@
 package com.sda.gf23spring;
 
+import com.sda.gf23spring.repository.PersonDao;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,9 +12,11 @@ public class ProgStarter implements CommandLineRunner {
     Logger logger;
     MessageSource messageSource;
 
+    PersonDao personDao;
+
     @Override
     public void run(String... args) throws Exception {
-
+        personDao.getAll().forEach(System.out::println);
     }
 
     @Autowired
@@ -24,5 +27,10 @@ public class ProgStarter implements CommandLineRunner {
     @Autowired
     public void setLogger(Logger logger) {
         this.logger = logger;
+    }
+
+    @Autowired
+    public void setPersonDao(PersonDao personDao) {
+        this.personDao = personDao;
     }
 }

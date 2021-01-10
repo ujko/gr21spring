@@ -6,9 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@ComponentScan(value = {"com.sda.testOutsider", "com.sda.gf23spring"})
 @PropertySource({"classpath:person.properties"})
-//@ImportResource("classpath:config/spring-configuration.xml")
 public class Gf23springApplication {
 
     public static void main(String[] args) {
