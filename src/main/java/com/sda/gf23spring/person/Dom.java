@@ -1,17 +1,20 @@
 package com.sda.gf23spring.person;
 
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class Dom {
     Logger logger;
     private int id;
-
     private PersonInt personInt;
 
-    public void setPerson(PersonInt personInt) {
+    public Dom(int id, PersonInt personInt) {
+        this.id = id;
         this.personInt = personInt;
     }
+
+    //    public void setPerson(PersonInt personInt) {
+//        this.personInt = personInt;
+//    }
 
     public void init() {
         logger.info("Metoda init klasy Dom");
@@ -21,7 +24,6 @@ public class Dom {
         logger.info("Kończę zmianę");
     }
 
-    @Autowired
     public void setLogger(Logger logger) {
         this.logger = logger;
     }
@@ -34,7 +36,7 @@ public class Dom {
                 '}';
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

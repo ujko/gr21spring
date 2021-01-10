@@ -14,27 +14,24 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class Config {
 
-    @Autowired
-    Person person;
+//    @Autowired
+//    Person person;
 
-    @Autowired
-    PersonK personK;
+//    @Bean(initMethod = "init", destroyMethod = "end")
+//    public Dom createDom(Logger logger) {
+//        Dom dom = new Dom();
+//        dom.setId(1);
+////        dom.setLogger(logger);
+//        logger.info("createDom");
+//        dom.setPerson(person);
+//        return dom;
+//    }
 
-    @Bean(initMethod = "init", destroyMethod = "end")
-    public Dom createDom(Logger logger) {
-        Dom dom = new Dom();
-        dom.setId(1);
-//        dom.setLogger(logger);
-        logger.info("createDom");
-        dom.setPerson(person);
-        return dom;
-    }
-
-    @Bean
-    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-    public Logger getLogger(InjectionPoint injectionPoint) {
-        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
-    }
+//    @Bean("logger")
+//    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//    public Logger getLogger(InjectionPoint injectionPoint) {
+//        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
+//    }
 
 
 }
