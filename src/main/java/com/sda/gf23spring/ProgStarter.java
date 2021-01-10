@@ -16,7 +16,8 @@ public class ProgStarter implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        personDao.getAll().forEach(System.out::println);
+        System.out.println(personDao.getByFistName("Tate"));
+
     }
 
     @Autowired

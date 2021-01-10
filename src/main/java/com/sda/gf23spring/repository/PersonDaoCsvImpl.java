@@ -5,7 +5,6 @@ import com.sda.gf23spring.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -16,10 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
+@Profile("dev")
 public class PersonDaoCsvImpl implements PersonDao {
-    private Map<Integer, Person> personMap = new HashMap<>();
+    Map<Integer, Person> personMap = new HashMap<>();
+
     @Value("${persons.size}")
     private int personsSize;
 
@@ -30,7 +32,7 @@ public class PersonDaoCsvImpl implements PersonDao {
                 .map(x -> x.split(","))
                 .map(x -> new Person(x[0], x[1], LocalDate.parse(x[2], Utils.DATE_FORMAT), Double.parseDouble(x[3])))
                 .limit(personsSize)
-                .forEach(x -> add(x));
+                .forEach(this::add);
     }
 
     @Override
@@ -40,27 +42,48 @@ public class PersonDaoCsvImpl implements PersonDao {
 
     @Override
     public Person getById(int personId) {
-        return null;
+        return personMap.get(personId);
     }
 
     @Override
     public List<Person> getByFistName(String firstName) {
+//        if(firstName == null || "".equals(firstName)) {
+//            return new ArrayList<>();
+//        }
+//        return getAll()
+//                .stream()
+//                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
+//                .collect(Collectors.toList());
         return null;
     }
 
     @Override
     public List<Person> getByLastName(String lastName) {
-        return null;
+        if(lastName == null || "".equals(lastName)) {
+            return new ArrayList<>();
+        }
+        return getAll()
+                .stream()
+                .filter(x -> x.getLastName().toLowerCase().contains(lastName.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Person> getByBirthDateBetween(LocalDate from, LocalDate to) {
-        return null;
+        return getAll()
+                .stream()
+                .filter(x -> x.getBirthDate().isAfter(from))
+                .filter(x -> x.getBirthDate().isBefore(to))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Person> getBySalaryBetween(double from, double to) {
-        return null;
+        return getAll()
+                .stream()
+                .filter(x -> x.getSalary() >= from)
+                .filter(x -> x.getSalary() <= to)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -83,11 +106,13 @@ public class PersonDaoCsvImpl implements PersonDao {
 
     @Override
     public Person modify(int personId, Person person) {
-        return null;
+        person.setPersonId(personId);
+        personMap.put(personId, person);
+        return person;
     }
 
     @Override
     public Person remove(int personId) {
-        return null;
+        return personMap.remove(personId);
     }
 }
