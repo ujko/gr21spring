@@ -3,7 +3,6 @@ package com.sda.gf23spring.service;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.repository.PersonDao;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,16 +16,6 @@ public class PersonServiceImpl implements PersonService {
 
     public PersonServiceImpl(PersonDao personDao) {
         this.personDao = personDao;
-    }
-
-//    @Autowired
-//    public void setPersonDao(PersonDao personDao) {
-//        this.personDao = personDao;
-//    }
-
-    @Scheduled(fixedDelayString = "${timer.delay}")
-    public void timer() {
-        System.out.println("Uruchamiam timer");
     }
 
     @Override
