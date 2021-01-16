@@ -3,10 +3,13 @@ package com.sda.gf23spring.service;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.repository.PersonDao;
+import com.sda.gf23spring.utils.Utils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,13 +48,31 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> getByBirthDateBetween(LocalDate from, LocalDate to) {
-        return personDao.getByBirthDateBetween(from, to);
+    public List<Person> getByBirthDateBetween(String from, String to) {
+        LocalDate dateFrom = checkString(from) ? LocalDate.parse(from, Utils.DATE_FORMAT) : LocalDate.of(1900, 01, 01);
+        LocalDate dateTo = checkString(to) ? LocalDate.parse(to, Utils.DATE_FORMAT) : LocalDate.now();
+        return personDao.getByBirthDateBetween(dateFrom, dateTo)
+                .stream()
+                .sorted(Comparator.comparing(Person::getBirthDate))
+                .collect(Collectors.toList());
+    }
+
+    private boolean checkString(String txt) {
+        return (txt != null && !txt.trim().equals(""));
     }
 
     @Override
     public List<Person> getBySalaryBetween(double from, double to) {
         return personDao.getBySalaryBetween(from, to);
+    }
+
+    @Override
+    public List<Person> getByFirstNameAndLastName(String firstName, String lastName) {
+        return getAll()
+                .stream()
+                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
+                .filter(x -> x.getLastName().toLowerCase().contains(lastName.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     @Override
