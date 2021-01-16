@@ -1,6 +1,7 @@
 package com.sda.gf23spring;
 
-import com.sda.gf23spring.repository.PersonDao;
+import com.sda.gf23spring.service.PersonService;
+import com.sda.gf23spring.service.PersonServiceImpl;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,12 +13,12 @@ public class ProgStarter implements CommandLineRunner {
     Logger logger;
     MessageSource messageSource;
 
-    PersonDao personDao;
+    PersonServiceImpl personService;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(personDao.getByFistName("Tate"));
-
+        System.out.println(personService.getByFistName("Tate"));
+        personService.timer();
     }
 
     @Autowired
@@ -31,7 +32,7 @@ public class ProgStarter implements CommandLineRunner {
     }
 
     @Autowired
-    public void setPersonDao(PersonDao personDao) {
-        this.personDao = personDao;
+    public void setPersonService(PersonServiceImpl personService) {
+        this.personService = personService;
     }
 }

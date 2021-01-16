@@ -3,6 +3,7 @@ package com.sda.gf23spring.service;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.repository.PersonDao;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,6 +19,19 @@ public class PersonServiceImpl implements PersonService {
         this.personDao = personDao;
     }
 
+//    @Autowired
+//    public void setPersonDao(PersonDao personDao) {
+//        this.personDao = personDao;
+//    }
+
+//    @Scheduled(fixedDelay = 100000)
+    public void timer() throws InterruptedException {
+        while (true) {
+            System.out.println("Uruchamiam timer");
+            Thread.sleep(2000);
+        }
+    }
+
     @Override
     public List<Person> getAll() {
         return personDao.getAll();
@@ -30,7 +44,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getByFistName(String firstName) {
-        if(firstName == null || "".equals(firstName)) {
+        if (firstName == null || "".equals(firstName)) {
             return new ArrayList<>();
         }
         return personDao.getAll()
