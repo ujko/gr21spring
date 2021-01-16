@@ -24,14 +24,9 @@ public class PersonServiceImpl implements PersonService {
 //        this.personDao = personDao;
 //    }
 
-    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelayString = "${timer.delay}")
     public void timer() {
         System.out.println("Uruchamiam timer");
-    }
-
-    @Scheduled(fixedDelay = 1500)
-    public void timer1() {
-        System.out.println("Uruchamiam timer1");
     }
 
     @Override
