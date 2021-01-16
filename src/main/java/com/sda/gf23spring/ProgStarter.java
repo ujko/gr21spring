@@ -1,7 +1,6 @@
 package com.sda.gf23spring;
 
 import com.sda.gf23spring.service.PersonService;
-import com.sda.gf23spring.service.PersonServiceImpl;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,12 +12,11 @@ public class ProgStarter implements CommandLineRunner {
     Logger logger;
     MessageSource messageSource;
 
-    PersonServiceImpl personService;
+    PersonService personService;
 
     @Override
     public void run(String... args) throws Exception {
         System.out.println(personService.getByFistName("Tate"));
-        personService.timer();
     }
 
     @Autowired
@@ -32,7 +30,7 @@ public class ProgStarter implements CommandLineRunner {
     }
 
     @Autowired
-    public void setPersonService(PersonServiceImpl personService) {
+    public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
 }

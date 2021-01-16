@@ -24,12 +24,14 @@ public class PersonServiceImpl implements PersonService {
 //        this.personDao = personDao;
 //    }
 
-//    @Scheduled(fixedDelay = 100000)
-    public void timer() throws InterruptedException {
-        while (true) {
-            System.out.println("Uruchamiam timer");
-            Thread.sleep(2000);
-        }
+    @Scheduled(fixedDelay = 2000)
+    public void timer() {
+        System.out.println("Uruchamiam timer");
+    }
+
+    @Scheduled(fixedDelay = 1500)
+    public void timer1() {
+        System.out.println("Uruchamiam timer1");
     }
 
     @Override
