@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj osobę</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Dodaj osobę</h1>
+    <div>
+        <form class="form-group" th:object="${newPerson}" th:action="@{/spersons}" th:method="post">
+            <label>Imie: </label>
+            <input type="text" th:field="*{firstName}"/>
+            <label>Nazwisko: </label>
+            <input type="text" th:field="*{lastName}"/>
+            <label>Data urodzenia: </label>
+            <input type="date" th:field="*{birthDate}"/>
+            <label>Wynagrodzenie: </label>
+            <input type="text" th:field="*{salary}"/>
+            <button type="submit" class="btn">Dodaj osobę</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
