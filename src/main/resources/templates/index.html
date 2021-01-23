@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{title}"></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="./css/styles.css"/>
 </head>
 <body>
-<h1 th:text="#{hello}"></h1>
+<div class="container">
+    <h1 th:text="#{hello}"></h1>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Imie</td>
+                    <td>Nazwisko</td>
+                    <td>Data urodzenia</td>
+                    <td>Pensja</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.personId}"></td>
+                    <td th:text="${person.firstName}"></td>
+                    <td th:text="${person.lastName}"></td>
+                    <td th:text="${person.birthDate}"></td>
+                    <td th:text="${person.salary}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
 </body>
 </html>
