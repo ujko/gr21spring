@@ -13,15 +13,17 @@
         <form class="form-group" th:object="${newPerson}" th:action="@{/spersons}" th:method="post">
             <label>Imie: </label>
             <input type="text" th:field="*{firstName}"/>
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red;"></p>
             <label>Nazwisko: </label>
             <input type="text" th:field="*{lastName}"/>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red;"></p>
             <label>Data urodzenia: </label>
-            <input type="date" th:field="*{birthDate}"/>
+            <input type="date" th:field="*{birthDateS}"/>
+            <p th:if="${#fields.hasErrors('birthDateS')}" th:errors="*{birthDateS}" style="color: red;"></p>
             <label>Wynagrodzenie: </label>
-            <input type="text" th:field="*{salary}"/>
+            <input type="number" th:field="*{salary}"/>
             <button type="submit" class="btn">Dodaj osobę</button>
         </form>
-
     </div>
 </div>
 </body>

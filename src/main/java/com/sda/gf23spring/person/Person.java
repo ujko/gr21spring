@@ -1,12 +1,23 @@
 package com.sda.gf23spring.person;
 
+import com.sda.gf23spring.utils.Utils;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class Person {
     private int personId;
+    @NotNull
+    @Size(min = 2, message = "Imie powinno posiadać między 2 a 20 znaków")
     private String firstName;
+    @NotNull
+    @Size(min = 2, message = "Nazwisko powinno posiadać między 2 a 20 znaków")
     private String lastName;
     private LocalDate birthDate;
+    @Pattern(regexp = "[\\d]{4}-[\\d]{2}-[\\d]{2}", message = "Nieprawidłowa data")
+    private String birthDateS;
     private double salary;
 
     public Person() {
@@ -57,6 +68,15 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getBirthDateS() {
+        return birthDateS;
+    }
+
+    public void setBirthDateS(String birthDateS) {
+        birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
+        this.birthDateS = birthDateS;
     }
 
     @Override
