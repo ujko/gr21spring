@@ -16,6 +16,7 @@ public class Person {
     @Size(min = 2, message = "Nazwisko powinno posiadać między 2 a 20 znaków")
     private String lastName;
     private LocalDate birthDate;
+    @NotNull
     @Pattern(regexp = "[\\d]{4}-[\\d]{2}-[\\d]{2}", message = "Nieprawidłowa data")
     private String birthDateS;
     private double salary;
@@ -71,12 +72,17 @@ public class Person {
     }
 
     public String getBirthDateS() {
+        if(birthDate != null) {
+            birthDateS = birthDate.format(Utils.DATE_FORMAT_HTML);
+        }
         return birthDateS;
     }
 
     public void setBirthDateS(String birthDateS) {
-        birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
-        this.birthDateS = birthDateS;
+        if(birthDateS != null) {
+            birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
+            this.birthDateS = birthDateS;
+        }
     }
 
     @Override
