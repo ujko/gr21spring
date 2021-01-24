@@ -34,6 +34,11 @@
         <div class="row">
             <a href="/sByDate">Wyszukiwanie</a>
         </div>
+        <div class="row">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" class="btn"/>
+            </form>
+        </div>
     </div>
 </div>
 </body>
