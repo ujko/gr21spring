@@ -10,6 +10,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "persons")
+@NamedQueries({
+    @NamedQuery(name = "firstAndLastName", query = "select p from Person p where lower( p.firstName) like concat('%', :firstName, '%') " +
+        " and lower( p.lastName) like concat('%', :lastName, '%')"),
+    @NamedQuery(name = "firstAndLastName1", query = "select p from Person p where lower( p.firstName) like concat('%', :firstName, '%') " +
+        " and lower( p.lastName) like concat('%', :lastName, '%')")})
 public class Person {
 
     @Id

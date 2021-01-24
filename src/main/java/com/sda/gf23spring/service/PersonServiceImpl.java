@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,11 +67,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getByFirstNameAndLastName(String firstName, String lastName) {
-        return getAll()
-                .stream()
-                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
-                .filter(x -> x.getLastName().toLowerCase().contains(lastName.toLowerCase()))
-                .collect(Collectors.toList());
+        return personDaoHibernate.pobierz(firstName, lastName);
     }
 
     @Override

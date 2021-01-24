@@ -25,6 +25,9 @@ public class ProgStarter implements CommandLineRunner {
     public void run(String... args) throws Exception {
         List<Person> all = personDao.getAll();
         personDaoHibernate.saveAll(all);
+
+        List<Person> d = personDaoHibernate.pobierz("d", "t");
+        d.forEach(System.out::println);
     }
 
     @Autowired
