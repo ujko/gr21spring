@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukuj po datach</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Wyszukiwanie po datach</h1>
+    <div>
+        <form class="form-group" th:action="@{/sPersonsByAge}" th:method="get">
+            <label>Data od:</label>
+            <input type="date" th:name="min"/>
+            <label>Data do:</label>
+            <input type="date" th:name="max"/>
+            <div>
+                <button type="submit" class="btn">Wyświetl</button>
+<!--                localhost:8080/sPersonsByAge?min=2222-12-12&max=1111-11-11-->
+            </div>
+        </form>
+        <a href="/spersons">Powrót</a>
+    </div>
+</div>
+</body>
+</html>
