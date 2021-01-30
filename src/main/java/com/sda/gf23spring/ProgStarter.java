@@ -35,25 +35,25 @@ public class ProgStarter implements CommandLineRunner {
         List<Person> d = personDaoHibernate.pobierz("d", "t");
         d.forEach(System.out::println);
 
-//        User pawel = new User();
-//        pawel.setLogin("pawel");
-//        pawel.setPassword("$2a$10$LXatYAc.YlKZ2ZU/NP3hbONQG7mibqn8r1WEvVxVr47xTZykXe4Rm");
-//        pawel.setEnabled(true);
-//        userDao.save(pawel);
-//
-//        User ania = new User();
-//        ania.setLogin("ania");
-//        ania.setPassword("$2a$10$bNZxnuPqFf/ZQm1PtUPKxe.6CbzyDzTjCZ46ihz4XiAG3CQlRObYu");
-//        ania.setEnabled(true);
-//        userDao.save(ania);
-//        UserRole pawelRoleAdmin = new UserRole();
-//        pawelRoleAdmin.setLogin("pawel");
-//        pawelRoleAdmin.setRole("ADMIN");
-//        userRoleDao.save(pawelRoleAdmin);
-//        UserRole aniaRoleUser = new UserRole();
-//        aniaRoleUser.setLogin("ania");
-//        aniaRoleUser.setRole("USER");
-//        userRoleDao.save(aniaRoleUser);
+        User pawel = new User();
+        pawel.setLogin("pawel");
+        pawel.setPassword("$2a$10$LXatYAc.YlKZ2ZU/NP3hbONQG7mibqn8r1WEvVxVr47xTZykXe4Rm");
+        pawel.setEnabled(true);
+        userDao.save(pawel);
+
+        User ania = new User();
+        ania.setLogin("ania");
+        ania.setPassword("$2a$10$bNZxnuPqFf/ZQm1PtUPKxe.6CbzyDzTjCZ46ihz4XiAG3CQlRObYu");
+        ania.setEnabled(true);
+        userDao.save(ania);
+        UserRole pawelRoleAdmin = new UserRole();
+        pawelRoleAdmin.setLogin("pawel");
+        pawelRoleAdmin.setRole("ADMIN");
+        userRoleDao.save(pawelRoleAdmin);
+        UserRole aniaRoleUser = new UserRole();
+        aniaRoleUser.setLogin("ania");
+        aniaRoleUser.setRole("USER");
+        userRoleDao.save(aniaRoleUser);
     }
 
     @Autowired

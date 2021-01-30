@@ -84,6 +84,8 @@ public class PersonController {
     public String sPersonsByAge(@RequestParam("min") String min, @RequestParam("max") String max, Model model) {
         List<Person> personList = personService.getByBirthDateBetween(min,max, Utils.DATE_FORMAT_HTML);
         model.addAttribute("persons",personList);
+
+        model.addAttribute("czy_wyswietlac", false);
         return "selectedPersons";
     }
 
